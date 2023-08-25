@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
-
-void OnTriggerEnter2D(Collider2D other) {
- if (other.gameObject.CompareTag("Level")) {
-     Debug.Log("You lose!");
-     SceneManager.LoadScene("Level1");
- }  
-}
+    [SerializeField] float reloadDelay = 2f;
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Level")) {
+                Debug.Log("You lose!");
+                Invoke("ReloadScene", reloadDelay);
+            }  
+    }
+     void ReloadScene() {
+        SceneManager.LoadScene("Level1");
+    }
 }
